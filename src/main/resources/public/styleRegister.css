@@ -1,0 +1,27 @@
+body {font-family: Arial, sans-serif;}
+
+input{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    box-sizing: border-box;
+}
+button {
+    background-color: lightgreen;
+    color: black;
+    padding: 14px 20px;
+    margin: 8px 0px;
+    width: 100%;
+}
+button:hover {
+    opacity: 0.75;
+}
+.loginPageBtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: lightcoral;
+}
+.container {
+    padding: 17px;
+}
