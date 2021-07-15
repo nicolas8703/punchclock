@@ -29,6 +29,7 @@ const saveForm = (e) => {
         },
         body: JSON.stringify(entry)
     }).then((result) => {
+        sessionStorage.setItem("auth",result.headers.get("Authorization"));
             window.location.href = "index.html";
         });
 };

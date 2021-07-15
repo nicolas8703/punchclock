@@ -12,7 +12,8 @@ const createEntry = (entry) => {
     fetch(`${URL}/entries`, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': sessionStorage.getItem("auth")
         },
         body: JSON.stringify(entry)
     }).then((result) => {
@@ -25,7 +26,10 @@ const createEntry = (entry) => {
 
 const indexEntries = () => {
     fetch(`${URL}/entries`, {
-        method: 'GET'
+        method: 'GET',
+        headers:{
+            'Authorization': sessionStorage.getItem("auth")
+        }
     }).then((result) => {
         result.json().then((result) => {
             entries = result;
@@ -37,7 +41,10 @@ const indexEntries = () => {
 
 const deleteEntry = (id) => {
     fetch(`${URL}/entries/${id}`, {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers:{
+            'Authorization': sessionStorage.getItem("auth")
+        }
     }).then((result) => {
         indexEntries();
     });
@@ -47,7 +54,8 @@ const updateEntry = (entry) => {
     fetch(`${URL}/entries/${entry.id}`, {
         method: 'PUT',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': sessionStorage.getItem("auth")
         },
         body: JSON.stringify(entry)
     }).then((result) => {
@@ -122,7 +130,6 @@ const createActions = (entry) => {
 const renderEntries = () => {
     const display = document.querySelector('#entryDisplay');
     display.innerHTML = '';
-    if (entries != null) {
         entries.forEach((entry) => {
             const row = document.createElement('tr');
             row.appendChild(createCell(entry.id));
@@ -131,7 +138,6 @@ const renderEntries = () => {
             row.appendChild(createActions(entry));
             display.appendChild(row);
         });
-    }
 };
 
 document.addEventListener('DOMContentLoaded', function(){
