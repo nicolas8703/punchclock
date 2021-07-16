@@ -1,9 +1,9 @@
 package ch.zli.m223.punchclock.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.h2.engine.User;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class ApplicationUser {
@@ -12,6 +12,29 @@ public class ApplicationUser {
     private long id;
     private String username;
     private String password;
+    //@ManyToOne
+    //@JoinColumn(name = "userGroup")
+    //private UserGroup userGroup;
+
+    @OneToMany
+    @JoinColumn(name = "entries")
+    private List<Entry> entries;
+
+    //public UserGroup getUserGroup() {
+    //    return userGroup;
+    //}
+
+    //public void setUserGroup(UserGroup userGroup) {
+    //    this.userGroup = userGroup;
+    //}
+
+    public List<Entry> getEntries() {
+        return entries;
+    }
+
+    public void setEntries(List<Entry> entries) {
+        this.entries = entries;
+    }
 
     public long getId() {
         return id;

@@ -2,8 +2,11 @@ package ch.zli.m223.punchclock.controller;
 
 import ch.zli.m223.punchclock.domain.ApplicationUser;
 import ch.zli.m223.punchclock.domain.Entry;
+import ch.zli.m223.punchclock.domain.UserGroup;
 import ch.zli.m223.punchclock.repository.ApplicationUserRepository;
+import ch.zli.m223.punchclock.repository.UserGroupRepository;
 import ch.zli.m223.punchclock.service.ApplicationUserService;
+import ch.zli.m223.punchclock.service.UserGroupService;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -18,12 +21,14 @@ public class UserController {
     private ApplicationUserRepository applicationUserRepository;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
     private ApplicationUserService applicationUserService;
+    private UserGroupService userGroupService;
 
     public UserController(ApplicationUserRepository applicationUserRepository,
-                          BCryptPasswordEncoder bCryptPasswordEncoder, ApplicationUserService applicationUserService) {
+                          BCryptPasswordEncoder bCryptPasswordEncoder, ApplicationUserService applicationUserService, UserGroupService userGroupService) {
         this.applicationUserRepository = applicationUserRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
         this.applicationUserService = applicationUserService;
+        this.userGroupService = userGroupService;
     }
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
@@ -35,6 +40,9 @@ public class UserController {
     @ResponseStatus(HttpStatus.CREATED)
     public ApplicationUser createApplicationUser(@Valid @RequestBody ApplicationUser applicationUser) {
         applicationUser.setPassword(bCryptPasswordEncoder.encode(applicationUser.getPassword()));
+        //if (!userGroupService.findAll().contains(applicationUser.getUserGroup())){
+         //   userGroupService.createUserGroup(new UserGroup(applicationUser.getUserGroup().getUserGroup()));
+        //}
         return applicationUserService.createApplicationUser(applicationUser);
     }
     @DeleteMapping("{id}")

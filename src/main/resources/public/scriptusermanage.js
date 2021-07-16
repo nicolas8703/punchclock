@@ -49,7 +49,7 @@ const deleteApplicationUsers = (id) => {
 };
 
 const updateApplicationUsers = (applicationUser) => {
-    fetch(`${URL}/users/${entry.id}`, {
+    fetch(`${URL}/users/${applicationUser.id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -78,6 +78,7 @@ const saveForm = (e) => {
     const applicationUser = {};
     applicationUser['username'] = formData.get('uname');
     applicationUser['password'] = formData.get('pw');
+    //applicationUser['userGroup'] = { userGroup: formData.get('ug')};
 
     if (mode === 'create') {
         createApplicationUser(applicationUser);
@@ -92,16 +93,12 @@ const editApplicationUser = (applicationUser) => {
     mode = 'edit';
     currentApplicationUser = applicationUser;
 
-    //TODO
-    //const userForm = document.querySelector('#userForm');
-    //const checkInDateField = userForm.querySelector('[name="checkInDate"]');
-    //checkInDateField.value = applicationUser.checkIn.split('T')[0];
-    //const checkInTimeField = userForm.querySelector('[name="checkInTime"]');
-    //checkInTimeField.value = applicationUser.checkIn.split('T')[1].slice(0, -3);
-    //const checkOutDateField = userForm.querySelector('[name="checkOutDate"]');
-    //checkOutDateField.value = applicationUser.checkOut.split('T')[0];
-    //const checkOutTimeField = userForm.querySelector('[name="checkOutTime"]');
-    //checkOutTimeField.value = applicationUser.checkOut.split('T')[1].slice(0, -3);
+
+    const userForm = document.querySelector('#userForm');
+    const usernameField = userForm.querySelector('[name="uname"]');
+    usernameField.value = applicationUser.username;
+    //const passwordField = userForm.querySelector('[name="pw"]');
+    //passwordField.value = applicationUser.password;
 }
 
 const createCell = (text) => {
@@ -134,7 +131,7 @@ const renderApplicationUser = () => {
         const row = document.createElement('tr');
         row.appendChild(createCell(applicationUser.id));
         row.appendChild(createCell(applicationUser.username));
-        row.appendChild(createCell(applicationUser.password));
+        //row.appendChild(createCell(applicationUser.userGroup));
         row.appendChild(createActions(applicationUser));
         display.appendChild(row);
     });
