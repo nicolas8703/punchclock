@@ -36,7 +36,7 @@ const indexEntries = () => {
             renderEntries();
         });
     });
-    renderEntries();
+    //renderEntries();
 };
 
 const deleteEntry = (id) => {
@@ -130,6 +130,7 @@ const createActions = (entry) => {
 const renderEntries = () => {
     const display = document.querySelector('#entryDisplay');
     display.innerHTML = '';
+    if (entries.length !== undefined) {
         entries.forEach((entry) => {
             const row = document.createElement('tr');
             row.appendChild(createCell(entry.id));
@@ -138,6 +139,7 @@ const renderEntries = () => {
             row.appendChild(createActions(entry));
             display.appendChild(row);
         });
+    }
 };
 
 document.addEventListener('DOMContentLoaded', function(){

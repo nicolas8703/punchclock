@@ -31,8 +31,20 @@ public class Entry {
     @JoinColumn(name = "applicationUser")
     private ApplicationUser applicationUser;
 
+    @ManyToOne
+    @JoinColumn(name = "activity")
+    private Activity activity;
+
     public ApplicationUser getApplicationUser() {
         return applicationUser;
+    }
+
+    public Activity getActivity() {
+        return activity;
+    }
+
+    public void setActivity(Activity activity) {
+        this.activity = activity;
     }
 
     public void setApplicationUser(ApplicationUser applicationUser) {

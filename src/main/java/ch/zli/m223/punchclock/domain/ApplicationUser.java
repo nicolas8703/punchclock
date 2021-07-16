@@ -27,6 +27,12 @@ public class ApplicationUser {
     //public void setUserGroup(UserGroup userGroup) {
     //    this.userGroup = userGroup;
     //}
+    public void addEntries(Entry entry){
+        entries.add(entry);
+    }
+    public void deleteEntry(Entry entry){
+        entries.remove(entry);
+    }
 
     public List<Entry> getEntries() {
         return entries;

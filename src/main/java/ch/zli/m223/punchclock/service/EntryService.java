@@ -28,4 +28,7 @@ public class EntryService {
     public Entry updateEntry(Entry entry) {
         return entryRepository.save(entry);
     }
+    public Entry findEntrybyID(long id) {
+        return entryRepository.getOne(id);
+    }
 }

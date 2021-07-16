@@ -29,12 +29,18 @@ public class ApplicationUserService implements UserDetailsService {
         }
         return new User(applicationUser.getUsername(), applicationUser.getPassword(), emptyList());
     }
+
     public ApplicationUser createApplicationUser(ApplicationUser applicationUser) {
         return applicationUserRepository.saveAndFlush(applicationUser);
     }
     public List<ApplicationUser> findAll() {
         return applicationUserRepository.findAll();
     }
+
+    public ApplicationUser findbyUsername(String username) {
+        return applicationUserRepository.findByUsername(username);
+    }
+
     public void deleteApplicationUser(long id) {
         applicationUserRepository.deleteById(id);
     }
