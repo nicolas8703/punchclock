@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Punchclock Client</title>
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  <script src="scriptUserGroupManage.js" type="application/javascript"></script>
+</head>
+<body>
+<form id="userGroupForm">
+  <label for="userGroupName">User Group Name</label>
+  <input type="text" name="userGroupName" id="userGroupName" required>
+  <input type="submit" value="Save" />
+  <input type="reset" value="Cancel" />
+</form>
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>User Group</th>
+  </tr>
+  </thead>
+  <tbody id="entryDisplay">
+  <tr>
+    <td colspan="2">Loading...</td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

@@ -131,7 +131,6 @@ const renderApplicationUser = () => {
         const row = document.createElement('tr');
         row.appendChild(createCell(applicationUser.id));
         row.appendChild(createCell(applicationUser.username));
-        //row.appendChild(createCell(applicationUser.userGroup));
         row.appendChild(createActions(applicationUser));
         display.appendChild(row);
     });
