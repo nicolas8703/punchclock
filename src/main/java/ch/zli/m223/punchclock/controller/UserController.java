@@ -34,7 +34,7 @@ public class UserController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ApplicationUser createApplicationUser(@Valid @RequestBody ApplicationUser applicationUser) {
-        //applicationUser.setPassword(bCryptPasswordEncoder.encode(applicationUser.getPassword()));
+        applicationUser.setPassword(bCryptPasswordEncoder.encode(applicationUser.getPassword()));
         return applicationUserService.createApplicationUser(applicationUser);
     }
     @DeleteMapping("{id}")
@@ -46,7 +46,7 @@ public class UserController {
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ApplicationUser updateApplicationUser(@Valid @RequestBody ApplicationUser applicationUser) {
-        //applicationUser.setPassword(bCryptPasswordEncoder.encode(applicationUser.getPassword()));
+        applicationUser.setPassword(bCryptPasswordEncoder.encode(applicationUser.getPassword()));
         return applicationUserService.updateApplicationUser(applicationUser);
     }
 
