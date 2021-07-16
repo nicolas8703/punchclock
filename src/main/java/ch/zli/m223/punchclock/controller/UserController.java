@@ -7,6 +7,7 @@ import ch.zli.m223.punchclock.repository.ApplicationUserRepository;
 import ch.zli.m223.punchclock.repository.UserGroupRepository;
 import ch.zli.m223.punchclock.service.ApplicationUserService;
 import ch.zli.m223.punchclock.service.UserGroupService;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +34,10 @@ public class UserController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<ApplicationUser> getAllApplicationUser() {
+        List<ApplicationUser> temp = applicationUserRepository.findByNameEndsWith("n");
+        for (int i = 0; i < temp.size(); i++) {
+            System.out.println(temp.get(i).getUsername());
+        }
         return applicationUserService.findAll();
     }
 

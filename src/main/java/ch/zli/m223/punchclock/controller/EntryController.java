@@ -4,6 +4,8 @@ import ch.zli.m223.punchclock.domain.ApplicationUser;
 import ch.zli.m223.punchclock.domain.Entry;
 import ch.zli.m223.punchclock.service.ApplicationUserService;
 import ch.zli.m223.punchclock.service.EntryService;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +25,8 @@ public class EntryController {
         this.applicationUserService = applicationUserService;
     }
 
+
+
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<Entry> getAllEntries(Principal principal) {
@@ -33,6 +37,7 @@ public class EntryController {
                 temp.remove(i);
             }
         }
+
         return temp;
         //return entryService.findAll();
         //return applicationUserService.findbyUsername(principal.getName()).getEntries();

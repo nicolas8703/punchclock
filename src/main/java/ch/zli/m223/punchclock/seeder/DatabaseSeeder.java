@@ -21,6 +21,7 @@ public class DatabaseSeeder {
     private ApplicationUserRepository applicationUserRepository;
     private EntryRepository entryRepository;
     private UserGroupRepository userGroupRepository;
+    ApplicationUser applicationUser2 = new ApplicationUser();
     ApplicationUser applicationUser1 = new ApplicationUser();
 
     @Autowired
@@ -38,11 +39,10 @@ public class DatabaseSeeder {
     }
 
     private void seedUsersTable() {
-        applicationUser1.setUsername("admin1");
-        applicationUser1.setPassword(new BCryptPasswordEncoder().encode("pw1"));
-        ApplicationUser applicationUser2 = new ApplicationUser();
-        applicationUser2.setUsername("user1");
+        applicationUser2.setUsername("user");
         applicationUser2.setPassword(new BCryptPasswordEncoder().encode("pw1"));
+        applicationUser1.setUsername("admin");
+        applicationUser1.setPassword(new BCryptPasswordEncoder().encode("pw1"));
         applicationUserRepository.save(applicationUser1);
         applicationUserRepository.save(applicationUser2);
     }
