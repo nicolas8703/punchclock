@@ -14,6 +14,12 @@ import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
 
+/*
+    Hier ist der Startpunkt
+    Alles was darunter geschrieben wird erreicht man mit dem /entries
+    Es wird so geregelt in der Applikation das nur der Nutzer der eine Entry erstellt hat diese auch bearbeiten, löschen kann
+*/
+
 @RestController
 @RequestMapping("/entries")
 public class EntryController {
@@ -25,7 +31,10 @@ public class EntryController {
         this.applicationUserService = applicationUserService;
     }
 
-
+/*
+    Hier werden alle Entiries geholt. Es wird zuerst geprüft ob der Entry überhaupt zum User passt.
+    Falls das nicht der Fall ist wird der Entry gelöscht und nicht angezeigt
+*/
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
@@ -39,9 +48,11 @@ public class EntryController {
         }
 
         return temp;
-        //return entryService.findAll();
-        //return applicationUserService.findbyUsername(principal.getName()).getEntries();
     }
+
+    /*
+    Hier werden alle Entiries erstellt. Dabei wird der Enrtry auch gleich dem User zugeordnet.
+*/
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -50,6 +61,10 @@ public class EntryController {
         return entryService.createEntry(entry);
     }
 
+       /*
+    Hier werden alle Entiries gelöscht. Das kann nur der User der diesen erstellt hat
+*/
+
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteEntries(@PathVariable("id") long id, Principal principal) {
@@ -57,6 +72,9 @@ public class EntryController {
         //kucken ob es seine ist
        //applicationUserService.findbyUsername(principal.getName()).deleteEntry(entryService.findEntrybyID(id));
     }
+    /*
+    Hier werden alle Entiries geupdatet. Das kann nur der User der diesen erstellt hat
+*/
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)

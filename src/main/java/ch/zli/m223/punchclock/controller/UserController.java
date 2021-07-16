@@ -15,6 +15,12 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+      /*
+        Hier ist der Startpunkt
+    Alles was darunter geschrieben wird erreicht man mit dem /users
+    Hier ist alles normal und es hat keine grossen besonderheiten.
+*/
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -31,6 +37,12 @@ public class UserController {
         this.applicationUserService = applicationUserService;
         this.userGroupService = userGroupService;
     }
+
+
+    /*
+Alle werden gehollt.
+
+*/
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<ApplicationUser> getAllApplicationUser() {
@@ -41,6 +53,10 @@ public class UserController {
         return applicationUserService.findAll();
     }
 
+    /*
+Alle werden Sachen erstellt.
+
+*/
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ApplicationUser createApplicationUser(@Valid @RequestBody ApplicationUser applicationUser) {
@@ -50,6 +66,11 @@ public class UserController {
         //}
         return applicationUserService.createApplicationUser(applicationUser);
     }
+
+/*
+delete
+
+*/
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteApplicationUser(@PathVariable("id") long id) {
@@ -62,7 +83,10 @@ public class UserController {
         applicationUser.setPassword(bCryptPasswordEncoder.encode(applicationUser.getPassword()));
         return applicationUserService.updateApplicationUser(applicationUser);
     }
+    /*
+   sign up klasse hier wird das einloggen gemacht der Passwort wird speziell verschlüsselt
 
+    */
     @PostMapping("/sign-up")
     public void signUp(@RequestBody ApplicationUser user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));

@@ -10,6 +10,13 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+     /*
+        Hier ist der Startpunkt
+    Alles was darunter geschrieben wird erreicht man mit dem /usergroup
+    Hier ist alles normal und es hat keine grossen besonderheiten.
+
+*/
+
 @RestController
 @RequestMapping("/usergroup")
 public class UserGroupController {
@@ -19,12 +26,22 @@ public class UserGroupController {
         this.userGroupService = userGroupService;
     }
 
+         /*
+Alle werden gehollt.
+
+*/
+
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<UserGroup> getAllUserGroups() {
         return userGroupService.findAll();
     }
 
+
+    /*
+Alle werden Sachen erstellt.
+
+*/
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public UserGroup createUserGroup(@Valid @RequestBody UserGroup userGroup) {
