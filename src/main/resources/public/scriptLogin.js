@@ -12,7 +12,7 @@ const createEntry = (e) => {
 };
 
 const registerBtnAction = (e) => {
-    window.location.href = "login.html";
+    window.location.href = "register.html";
 }
 
 const saveForm = (e) => {
